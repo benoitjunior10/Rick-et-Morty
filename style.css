@@ -1,0 +1,217 @@
+/* --- VARIABLES DE COULEUR ET STYLES DE BASE --- */
+        :root {
+            --background-dark: #1a202c;
+            --background-light: #2d3748;
+            --background-input: #4a5568;
+            --text-primary: #e2e8f0;
+            --text-secondary: #a0aec0;
+            --border-color: #4a5568;
+            --accent-cyan: #63b3ed;
+            --accent-cyan-hover: #4299e1;
+            --status-alive: #48bb78;
+            --status-dead: #f56565;
+            --status-unknown: #a0aec0;
+            --shadow-color: rgba(99, 179, 237, 0.5);
+        }
+
+        /* Réinitialisation simple et style du corps */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .container {
+            width: 100%;
+            max-width: 1280px; /* Équivalent à max-w-7xl de Tailwind */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+        }
+        
+        /* --- EN-TÊTE --- */
+        .app-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .app-header h1 {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+        .app-header p {
+            font-size: 1.125rem; /* 18px */
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        @media (min-width: 768px) {
+             .app-header h1 {
+                font-size: 3rem; /* 48px */
+            }
+        }
+
+        /* --- BARRE DE RECHERCHE --- */
+        .search-bar {
+            margin-bottom: 2rem;
+            max-width: 36rem; /* 576px */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--background-light);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+        }
+
+        /* --- GRILLE DE PERSONNAGES --- */
+        #charactersContainer {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(1, 1fr);
+        }
+        /* Points de rupture pour la grille responsive */
+        @media (min-width: 640px) { /* sm */
+            #charactersContainer {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 768px) { /* md */
+            #charactersContainer {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 1024px) { /* lg */
+            #charactersContainer {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* --- CARTE DE PERSONNAGE --- */
+        .character-card {
+            background-color: var(--background-light);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px var(--shadow-color);
+        }
+        .character-card img {
+            width: 100%;
+            height: 12rem; /* 192px */
+            object-fit: cover;
+            display: block;
+        }
+        .card-content {
+            padding: 1rem;
+        }
+        .card-content h3 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .status {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        .status-dot {
+            height: 0.75rem; /* 12px */
+            width: 0.75rem; /* 12px */
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .status-dot.alive { background-color: var(--status-alive); }
+        .status-dot.dead { background-color: var(--status-dead); }
+        .status-dot.unknown { background-color: var(--status-unknown); }
+
+        .location-info {
+            color: var(--text-secondary);
+            font-size: 0.875rem; /* 14px */
+        }
+        .location-info span {
+            font-weight: 600;
+        }
+
+        /* --- MESSAGES ET CHARGEMENT --- */
+        #messageContainer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.25rem;
+            color: #f56565; /* Rouge pour les erreurs */
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--accent-cyan);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- PAGINATION --- */
+        #paginationContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .pagination-button {
+            padding: 0.5rem 1.5rem;
+            background-color: var(--background-light);
+            border: none;
+            color: var(--text-primary);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .pagination-button:hover {
+            background-color: var(--accent-cyan-hover);
+        }
+        .pagination-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        #pageInfo {
+            font-size: 1.125rem; /* 18px */
+            font-weight: 500;
+        }
+
+        /* Classe utilitaire pour cacher des éléments */
+        .hidden {
+            display: none;
+        }
