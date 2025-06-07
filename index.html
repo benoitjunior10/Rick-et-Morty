@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorateur de Personnages Rick et Morty (CSS Pur)</title>
+    <!-- On importe la police Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="app-header">
+            <h1>Explorateur Rick et Morty</h1>
+            <p>Découvrez les personnages de l'univers de Rick et Morty</p>
+        </header>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Rechercher un personnage par nom...">
+        </div>
+
+        <main id="charactersContainer">
+            <!-- Les cartes de personnages seront injectées ici par JavaScript -->
+        </main>
+
+        <!-- Conteneur pour les messages d'erreur ou de chargement -->
+        <div id="messageContainer"></div>
+
+
+        <!-- Section de pagination -->
+        <div id="paginationContainer">
+            <button id="prevButton" class="pagination-button">Précédent</button>
+            <span id="pageInfo">Page 1</span>
+            <button id="nextButton" class="pagination-button">Suivant</button>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
